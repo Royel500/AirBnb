@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaStar, FaHeart, FaMapMarkerAlt, FaMoon, FaUsers, FaSpinner } from 'react-icons/fa';
-import useAxiosecure from '../../hooks/useAxiosecure';
 import { useParams } from 'react-router';
+import useAxiosecure from '../../hooks/useAxiosecure';
 
 const PackageDetail = () => {
   const { id: packageId } = useParams(); // get id from route
@@ -69,41 +69,41 @@ const PackageDetail = () => {
         <div className="bg-white rounded-xl shadow-md overflow-hidden">
           <div className="relative ">
             <img
-              src={pkg.image}
-              alt={pkg.title}
+              src={pkg?.image}
+              alt={pkg?.title}
               className="w-screen lg:h-150"
             />
             <button
               onClick={toggleFavorite}
               className="absolute top-6 right-6 text-white hover:text-red-500 bg-black bg-opacity-50 rounded-full p-3"
             >
-              <FaHeart className={pkg.isFavorite ? "text-red-500" : "text-white"} />
+              <FaHeart className={pkg?.isFavorite ? "text-red-500" : "text-white"} />
             </button>
           </div>
 
           <div className="p-6">
             <div className="flex justify-between items-start mb-4">
               <div>
-                <h1 className="text-2xl font-bold mb-2">{pkg.title}</h1>
+                <h1 className="text-2xl font-bold mb-2">{pkg?.title}</h1>
                 <div className="flex items-center text-gray-600 mb-2">
                   <FaMapMarkerAlt className="mr-2" />
-                  <span>{pkg.location}</span>
+                  <span>{pkg?.location}</span>
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="flex items-center">
                     <FaStar className="text-red-500 mr-1" />
-                    <span>{pkg.rating}</span>
+                    <span>{pkg?.rating}</span>
                   </div>
                   <div className="flex items-center">
                     <FaMoon className="mr-1" />
-                    <span>{pkg.propertyType}</span>
+                    <span>{pkg?.propertyType}</span>
                   </div>
                 </div>
               </div>
 
               <div className="bg-white p-4 rounded-lg shadow-md">
                 <div className="text-2xl font-bold mb-2">
-                  ${pkg.price} <span className="text-sm font-normal text-gray-600">/ {pkg.duration} nights</span>
+                  ${pkg?.price} <span className="text-sm font-normal text-gray-600">/ {pkg?.duration} nights</span>
                 </div>
 
               </div>
@@ -112,7 +112,7 @@ const PackageDetail = () => {
             {pkg.description && (
               <div className="mb-6">
                 <h2 className="text-xl font-semibold mb-3">Description</h2>
-                <p className="text-gray-700">{pkg.description}</p>
+                <p className="text-gray-700">{pkg?.description}</p>
               </div>
             )}
 

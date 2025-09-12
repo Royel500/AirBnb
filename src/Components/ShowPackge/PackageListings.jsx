@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaStar, FaHeart, FaMapMarkerAlt, FaMoon, FaSpinner } from 'react-icons/fa';
-import useAxiosecure from '../../hooks/useAxiosecure';
 import { Link } from 'react-router';
+import useAxiosecure from '../../hooks/useAxiosecure';
 
 const PackageListings = () => {
   const [packages, setPackages] = useState([]);
@@ -65,7 +65,7 @@ const PackageListings = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gray-50 mt-10 py-8">
       <div className="container mx-auto px-4">
         <h1 className="text-3xl font-bold mb-2">Stay in London</h1>
         <p className="text-gray-600 mb-8">Discover amazing places to stay in London</p>
@@ -147,11 +147,11 @@ const PackageCard = ({ pkg }) => {
        
         <button 
           className="absolute top-3 right-0.5
-           text-white z-999 hover:text-red-500 transition-colors"
+           text-white  hover:text-red-500 transition-colors"
         >
           <FaHeart className={pkg.isFavorite ?
              "text-green-500":"text-red-500"  } /> 
-             <span>0000000</span> 
+             <span>Favorate</span> 
         </button>
 
         {pkg.guestFavorite && (

@@ -17,6 +17,7 @@ const AddPackageForm = () => {
     duration: '2',
     rating: '4.8',
     propertyType: 'Entire place',
+    placeType: 'Entire place',
     description: '',
     image: '',
     isFavorite: false,
@@ -107,6 +108,7 @@ const AddPackageForm = () => {
           duration: '2',
           rating: '4.8',
           propertyType: 'Entire place',
+          placeType: 'Entire place',
           description: '',
           image: '',
           isFavorite: false,
@@ -222,6 +224,7 @@ const AddPackageForm = () => {
                     required
                   />
                 </div>
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Property Type *</label>
                   <select
@@ -237,6 +240,41 @@ const AddPackageForm = () => {
                     <option value="Hotel room">Hotel room</option>
                   </select>
                 </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Add place  *</label>
+                <select
+            name="placeType"
+            value={formData.placeType}
+            onChange={handleInputChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+            required
+          >
+        <option value="">Add Place</option>
+  <option value="Dhaka">Dhaka</option>
+  <option value="London">London</option>
+  <option value="New York">New York</option>
+  <option value="Paris">Paris</option>
+  <option value="Tokyo">Tokyo</option>
+  <option value="Dubai">Dubai</option>
+  <option value="Singapore">Singapore</option>
+  <option value="Bangkok">Bangkok</option>
+  <option value="Kuala Lumpur">Kuala Lumpur</option>
+  <option value="Istanbul">Istanbul</option>
+  <option value="Rome">Rome</option>
+  <option value="Barcelona">Barcelona</option>
+  <option value="Amsterdam">Amsterdam</option>
+  <option value="Toronto">Toronto</option>
+  <option value="Los Angeles">Los Angeles</option>
+  <option value="Sydney">Sydney</option>
+  <option value="Berlin">Berlin</option>
+  <option value="Hong Kong">Hong Kong</option>
+  <option value="Maldives">Maldives</option>
+  <option value="Cairo">Cairo</option>
+
+          </select>
+
+                </div>
+
               </div>
 
               {/* Description */}

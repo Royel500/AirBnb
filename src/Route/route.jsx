@@ -3,8 +3,8 @@ import { createBrowserRouter } from "react-router";
 import RootLayOut from "../Layout/RootLayOut";
 import AirbnbListingForm from "../Components/AddPackage/AirbnbPackage";
 import Home from "../HomePAge/Home";
-import PackageListings from "../Components/AddPackage/PackageListings";
-import PackageDetail from "../Components/AddPackage/PackageDetails";
+import PackageDetail from "../Components/ShowPackge/PackageDetails";
+import PackageListings from "../Components/ShowPackge/PackageListings";
 
 
 
@@ -25,11 +25,11 @@ export  const router = createBrowserRouter([
         },
         {
           path:'/showPackage',
-          element:<PackageListings></PackageListings>
+          element:<PackageListings/>
         },
         {
           path:'/packages/:id',
-          element:<PackageDetail></PackageDetail>
+          element:<PackageDetail/>
         }
     ]
   },
