@@ -9,12 +9,20 @@ import {
   FaGlobeAmericas,
   FaConciergeBell,
   FaPlusCircle,
+  FaQuestionCircle
 } from 'react-icons/fa';
-import { Link } from 'react-router-dom'; // ✅ react-router-dom
+
+import { Link } from 'react-router'; 
+import { useLanguage } from '../hooks/useLanguage';
+import LanguageSelector from '../Components/Languange/LanguageSelector';
+
 
 const AirbnbNav = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+   const { t, language } = useLanguage();
+
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -26,7 +34,7 @@ const AirbnbNav = () => {
     <>
       {/* Top Navigation Bar */}
       <header
-        className={`fixed top-2 left-0 w-full z-50 transition-all
+        className={`fixed top-0  w-full z-50 transition-all
            duration-300 ${
           isScrolled ? 'bg-white shadow-md py-2' : 'bg-white py-4'
         }`}
@@ -42,95 +50,121 @@ const AirbnbNav = () => {
             </div>
           </Link>
 
+{/* Search Bar - visible when scrolled */}
+{isScrolled && (
+   <div className="py-2 hidden lg:flex ">
+     <div className="flex items-center border border-gray-300 
+     rounded-full py-1 px-4 shadow-sm hover:shadow-md transition-shadow max-w-md mx-auto">
+       <div className="flex-grow flex items-center justify-between"> 
+         <button className="font-medium text-[15px] px-4">Anywhere</button> 
+         <span className="h-4 bg-gray-300 w-px"></span> 
+         <button className="text-[15px] font-medium px-4">Any Time</button>
+         <span className="h-4 bg-gray-300 w-px"></span>
+         <button className="text-[15px] font-medium text-gray-500 px-4">
+           Add guests
+         </button>
+         <button className="bg-rose-500 rounded-full p-2"> 
+           <FaSearch className="text-white text-xs" />
+         </button>
+       </div>
+     </div>
+   </div>
+)}
 
 
           {/* Desktop / Tablet Menu */}
-          {!isScrolled && (
-     <div className=" hidden lg:flex space-x-5">
+{!isScrolled && (
+  <div className="hidden lg:flex flex-1 justify-center items-center space-x-5">
 
-            <Link to="/" className="flex  gap-1 items-center text-[15px] font-medium">
-
-              <FaHome className="text-2xl text-rose-500 mb-1" /> 
-
-              Homes
-
-            </Link>
-
-<Link to="/" className="flex gap-2 items-center text-[15px] font-medium relative">
-  <div className="relative">
-    <FaGlobeAmericas className="text-2xl text-rose-500 mb-1" />
-    {/* 🔴 NEW Badge */}
-<span className="absolute -top-4 -right-7 bg-gray-500 text-white text-[10px] font-bold px-1.5 py-0.5 
-  rounded-tr-md rounded-tl-md rounded-br-md">
-  NEW
-</span>
-
-  </div>
-  Experiences
+<Link to="/" className="flex gap-1 items-center text-[16px] font-semibold">
+   <FaHome className="text-2xl text-rose-500 mb-1" />
+{t.navbarHome}
 </Link>
 
 
-            <Link to="/" className="flex  gap-2 items-center text-[15px] font-medium">
-            <div className="relative">
-              <FaConciergeBell className="text-2xl text-rose-500 mb-1" />
-<span className="absolute -top-4 -right-7 bg-gray-500 text-white text-[10px] font-bold px-1.5 py-0.5 
-  rounded-tr-md rounded-tl-md rounded-br-md">
-  NEW
-</span>
+         
+      
 
+    <Link to="/" className="flex gap-2 items-center text-[16px] font-semibold relative">
+      <div className="relative">
+        <FaGlobeAmericas className="text-xl text-rose-500 mb-1" />
+        {/* 🔴 NEW Badge */}
+        <span className="absolute -top-4 -right-7 bg-gray-500 text-white text-[10px] font-bold px-2 py-0.5 
+          rounded-tr-md rounded-tl-md rounded-br-md">
+          NEW
+        </span>
+      </div>
+      {t.navbarExperiences}
+    </Link>
+
+    <Link to="/" className="flex gap-2 items-center text-[16px] font-semibold">
+      <div className="relative">
+        <FaConciergeBell className="text-xl text-rose-500 mb-1" />
+        <span className="absolute -top-4 -right-7 bg-gray-500 text-white text-[10px] font-bold px-2 py-0.5 
+          rounded-tr-md rounded-tl-md rounded-br-md">
+          NEW
+        </span>
+      </div>
+      {t.navbarServices}
+    </Link>
+{/* 
+    <Link to="/addPakage" className="flex gap-2 items-center text-[16px] font-semibold">
+      <FaPlusCircle className="text-xl text-rose-500 mb-1" /> Add Package
+    </Link> */}
   </div>
-               Services
-            </Link>
-            <Link to="/addPakage" className="flex gap-2 items-center text-[15px] font-medium">
-              <FaPlusCircle className="text-2xl text-rose-500 mb-1" /> Add Package
-            </Link>
-          </div>
+)}
 
-          )}
 
           {/* Right Side Menu */}
-          <div className="flex items-end space-x-4">
-            <button className="hidden md:block text-sm font-medium rounded-full
+          <div className="flex  space-x-1">
+            <button className="hidden md:block   text-sm font-medium rounded-full
              hover:bg-gray-100 py-2 ">
 
               Become a Host
             </button>
             <button className="p-2 rounded-full hover:bg-gray-100">
-              <FaGlobe className="text-gray-600 text-lg" />
-            </button>
-            <div
-              className="flex items-center border border-gray-300
-               rounded-full p-2 space-x-2 hover:shadow-md md:hidden"
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              <FaBars className="text-gray-500" />
-              <FaUserCircle className="text-gray-500 text-xl" />
-            </div>
-            <div className="hidden md:flex items-center border
-             border-gray-300 rounded-full p-2 space-x-2 hover:shadow-md">
-              <FaBars className="text-gray-500" />
-              <FaUserCircle className="text-gray-500 text-xl" />
-            </div>
+
+<LanguageSelector/>
+           
+   </button>
+
+<div
+  className="flex items-center border border-gray-300 rounded-full p-2 space-x-2 hover:shadow-md"
+  onClick={() => setMenuOpen(!menuOpen)}
+>
+  <FaBars className="text-gray-500" />
+  <FaUserCircle className="text-gray-500 text-xl" />
+</div>
+
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {/* {menuOpen && (
-          <div className="lg:hidden inline-block bg-white shadow-md py-4">
-            <Link to="/" className="block px-6 py-2 border-b">
-              Home
-            </Link>
-            <Link to="/" className="block px-6 py-2 border-b">
-              Experiences
-            </Link>
-            <Link to="/" className="block px-6 py-2 border-b">
-              Service
-            </Link>
-            <Link to="/addPakage" className="block px-6 py-2">
-              Add Package
-            </Link>
-          </div>
-        )} */}
+
+{/* Desktop toggle menu */}
+{menuOpen && (
+  <div className="hidden lg:block absolute top-full text-left right-0 w-56 bg-white shadow-lg rounded-lg z-50 p-4">  
+<Link 
+  to="/" 
+  className="flex items-center gap-2 font-bold py-2 border-b border-gray-300"
+>
+  <FaQuestionCircle className="text-gray-600" />
+  {t.navbarHelpCenter}
+</Link>  
+ <Link to="/addPakage" className="block font-bold   py-2">{t.navbarAddPackage} </Link>
+
+  <Link to="#" className="block  py-2 border-b border-gray-300 "> 
+  <span className='font-bold'> {t.navbarBecomeHost}</span>
+    <br />
+    <span className='text-[15px]'>
+      It's easy to hosting and earnextra income
+    </span>
+     </Link>
+    <Link to="#" className="block font-bold   py-2 ">Find a co-host</Link>
+    <Link to="/#" className="block font-bold   py-2 border-b border-gray-300 ">Gift cards</Link>
+    <Link to="/" className="block font-bold   py-2">{t.navbarSignIn}</Link>
+  </div>
+)}
+
 
 
         {/* Mobile top search */}
@@ -143,6 +177,7 @@ const AirbnbNav = () => {
               className="flex-grow text-sm outline-none"
             />
           </div>
+     
      
 
          {/* Mobile main nav items below search */}
@@ -167,22 +202,8 @@ const AirbnbNav = () => {
       </div>    </div>
 
         {/* Search Bar - visible when scrolled */}
-{isScrolled && (
-   <div className="py-3 hidden lg:flex ">
-   <div className="flex items-center border border-gray-300 
-   rounded-full py-1 px-4 shadow-sm hover:shadow-md transition-shadow max-w-md mx-auto">
-    <div className="flex-grow flex items-center justify-between"> 
-      <button className="font-medium text-lg px-4">Anywhere</button> 
-      <span className="h-4 bg-gray-300 w-px"></span> 
-      <button className="text-lg font-medium px-4">Any Time</button>
-       <span className="h-4 bg-gray-300 w-px"></span>
-        <button className="text-[15px] font-medium text-gray-500 px-4">
-           Add guests </button> <button className="bg-rose-500 rounded-full p-2"> 
-            <FaSearch className="text-white text-xs" /> {/* ✅ fixed */}
- </button>
-  </div>
-   </div>
-    </div> )}
+
+
 
       </header>
 

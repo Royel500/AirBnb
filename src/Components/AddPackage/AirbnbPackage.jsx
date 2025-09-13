@@ -259,17 +259,8 @@ const AddPackageForm = () => {
   <option value="Singapore">Singapore</option>
   <option value="Bangkok">Bangkok</option>
   <option value="Kuala Lumpur">Kuala Lumpur</option>
-  <option value="Istanbul">Istanbul</option>
-  <option value="Rome">Rome</option>
-  <option value="Barcelona">Barcelona</option>
-  <option value="Amsterdam">Amsterdam</option>
-  <option value="Toronto">Toronto</option>
   <option value="Los Angeles">Los Angeles</option>
-  <option value="Sydney">Sydney</option>
-  <option value="Berlin">Berlin</option>
   <option value="Hong Kong">Hong Kong</option>
-  <option value="Maldives">Maldives</option>
-  <option value="Cairo">Cairo</option>
 
           </select>
 
