@@ -3,7 +3,8 @@ import React from 'react';
 const Footer = () => {
     return (
         <div>
-       <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
+       <footer className="footer flex justify-between
+        bg-base-200 text-base p-10">
   <nav>
     <h6 className="footer-title">Support</h6>
     <a className="link link-hover">Help Center</a>
@@ -36,7 +37,9 @@ const Footer = () => {
     <a className="link link-hover">Carrears </a>
   </nav>
 </footer>
-<footer className="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4">
+<footer className="footer bg-base-200 text-base flex justify-between
+  p-10 border-t-base-300">
+
   <aside className="grid-flow-col items-center">
     <svg
       width="24"
@@ -56,7 +59,7 @@ const Footer = () => {
     </p>
   </aside>
   <nav className="md:place-self-center md:justify-self-end">
-    <div className="grid grid-flow-col gap-4">
+    <div className="grid grid-flow-col gap-4 mb-5">
 
       <a 
   href="https://t.me/itisroyel528" 

@@ -6,7 +6,7 @@ const RootLayOut = () => {
     return (
         <div>
 
-            <div className='min-w-screen'>
+            <div className=''>
                 <Outlet></Outlet>
             </div>
 

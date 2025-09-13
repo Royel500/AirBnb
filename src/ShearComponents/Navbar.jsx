@@ -34,12 +34,13 @@ const AirbnbNav = () => {
     <>
       {/* Top Navigation Bar */}
       <header
-        className={`fixed top-0  w-full z-50 transition-all
+        className={`fixed top-0 dark:bg-black w-full z-900 transition-all
            duration-300 ${
           isScrolled ? 'bg-white shadow-md py-2' : 'bg-white py-4'
         }`}
       >
-        <div className="container hidden mx-5 lg:flex items-center justify-between">
+<div className="hidden mx-20
+ lg:flex items-center justify-between">
           {/* Logo */}
           <Link to="/">
             <div className="flex items-center">
@@ -116,20 +117,22 @@ const AirbnbNav = () => {
 
 
           {/* Right Side Menu */}
-          <div className="flex  space-x-1">
+          <div className="flex right-0 space-x-1 justify-end">
             <button className="hidden md:block   text-sm font-medium rounded-full
-             hover:bg-gray-100 py-2 ">
+              py-2 ">
 
               Become a Host
             </button>
-            <button className="p-2 rounded-full hover:bg-gray-100">
+            <button className="p-2 rounded-full ">
 
 <LanguageSelector/>
            
    </button>
 
 <div
-  className="flex items-center border border-gray-300 rounded-full p-2 space-x-2 hover:shadow-md"
+  className="flex items-center border border-gray-300 rounded-full 
+  px-3 space-x-1 hover:shadow-md"
+
   onClick={() => setMenuOpen(!menuOpen)}
 >
   <FaBars className="text-gray-500" />
@@ -142,7 +145,9 @@ const AirbnbNav = () => {
 
 {/* Desktop toggle menu */}
 {menuOpen && (
-  <div className="hidden lg:block absolute top-full text-left right-0 w-56 bg-white shadow-lg rounded-lg z-50 p-4">  
+  <div className="hidden lg:block absolute top-full text-left right-0 w-56
+   bg-white dark:bg-black dark:text-white shadow-lg rounded-lg z-50 p-4">  
+
 <Link 
   to="/" 
   className="flex items-center gap-2 font-bold py-2 border-b border-gray-300"
@@ -181,10 +186,8 @@ const AirbnbNav = () => {
      
 
          {/* Mobile main nav items below search */}
-      <div className="lg:hidden   bg-white  px-4 
-      flex justify-around
-     
-      shadow-md py-2 fixed  left-0 w-full z-">
+<div className="lg:hidden bg-white px-4 flex justify-around shadow-md py-2 fixed bottom-0 left-0 w-full z-50">
+
 
         <Link to="/" className="flex flex-col items-center 
         text-xs font-medium">
@@ -209,17 +212,14 @@ const AirbnbNav = () => {
 
       {/* Extra Search Bar - NOT scrolled */}
 <div
-  className={`transition-all hidden lg:flex justify-center 
+  className={`transition-all hidden 
+    lg:flex justify-center 
     duration-200 mt-24 px-10 ${
     isScrolled ? 'opacity-0 max-h-0 overflow-hidden' : 'opacity-100 max-h-96'
   }`}
 >
-  <div
-    className="flex items-center border
-     border-gray-300 rounded-full px-10 shadow-xl 
-     hover:shadow-md transition-shadow py-2 space-y-2
-      lg:space-y-0 lg:space-x-10"
-  >
+<div className="flex items-center border border-gray-300 rounded-full px-10 shadow-xl hover:shadow-md py-2 space-y-2 lg:space-y-0 lg:space-x-10 mx-auto">
+
     <button className=" font-medium text-sm leading-tight">
       Where <br /> <span className="font-normal text-gray-500 whitespace-nowrap">Search destinations</span>
     </button>

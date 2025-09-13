@@ -55,7 +55,7 @@ const PackageListings = () => {
   }, {});
 
   return (
-    <div className="min-h-screen bg-gray-50 mt-10 py-8">
+    <div className="min-h-screen dark:bg-black dark:text-white bg-gray-50 mt-10 py-8 w-full">
       <div className="container mx-auto px-4">
         {/* Title */}
         <h1 className="text-3xl font-bold mb-2">{t.packageStayIn}</h1>
@@ -67,7 +67,7 @@ const PackageListings = () => {
           if (!items || items.length === 0) return null; // skip empty sections
 
           return (
-            <div key={place} className="mb-10 relative">
+            <div key={place} className="mb-10 dark:bg-black dark:text-white relative">
               <h2 className="text-xl font-semibold mb-4"> Stay in {place}</h2>
 
               {/* Scrollable row */}
@@ -84,16 +84,19 @@ const PackageListings = () => {
 
               {/* Arrows */}
               <button
-                onClick={() => scrollLeft(place)}
-                className="absolute top-1 right-6 transform -translate-y-1/2
-                 bg-white rounded-full shadow p-2 hover:bg-gray-100 z-10"
+             onClick={() => scrollLeft(place)}
+   className="absolute top-1 right-6 transform -translate-y-1/2
+  bg-white dark:bg-black dark:text-white 
+  rounded-full  shadow p-2 hover:bg-gray-100 z-10"
+
               >
+
                 &lt;
               </button>
               <button
                 onClick={() => scrollRight(place)}
                 className="absolute top-1 right-0 transform -translate-y-1/2
-                 bg-white rounded-full shadow p-2 hover:bg-gray-100 z-10"
+                 bg-white dark:bg-black dark:text-white rounded-full shadow p-2 hover:bg-gray-100 z-10"
               >
                 &gt;
               </button>
@@ -107,7 +110,7 @@ const PackageListings = () => {
 
 // Reusable Package Card
 const PackageCard = ({ pkg, t }) => (
-  <div className="rounded-xl overflow-hidden transition-shadow bg-white">
+  <div className="rounded-xl overflow-hidden dark:bg-black dark:text-white transition-shadow bg-white">
     <div className="relative">
       <Link to={`/packages/${pkg._id}`}>
         <img
