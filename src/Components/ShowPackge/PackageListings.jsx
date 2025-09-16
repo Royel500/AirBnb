@@ -55,11 +55,13 @@ const PackageListings = () => {
   }, {});
 
   return (
-    <div className="min-h-screen dark:bg-black dark:text-white bg-gray-50 mt-10 py-8 w-full">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen dark:bg-black dark:text-white
+     bg-gray-50 mt-10 py-8 ">
+
+      <div className=" mx-10 px-4">
         {/* Title */}
         <h1 className="text-3xl font-bold mb-2">{t.packageStayIn}</h1>
-        <p className="text-gray-600 mb-8">{t.packageDiscover}</p>
+        <p className=" mb-8">{t.packageDiscover}</p>
 
         {/* Render sections per placeType */}
         {Object.keys(groupedPackages).map((place) => {
@@ -126,7 +128,6 @@ const PackageCard = ({ pkg, t }) => (
 
       <button className="absolute top-3 right-0.5 text-white hover:text-red-500 transition-colors">
         <FaHeart className={pkg.isFavorite ? "text-green-500" : "text-red-500"} />
-        <span>{t.packageFavorite}</span>
       </button>
 
       {pkg.guestFavorite && (
@@ -144,7 +145,7 @@ const PackageCard = ({ pkg, t }) => (
 
       <div className="flex items-center gap-2">
         <span>${pkg.price}</span>
-        <span className="text-gray-500">/ {pkg.duration} nights</span>
+        <span >/ {pkg.duration} nights</span>
         <div className="flex items-center ml-auto">
           <FaStar className="text-red-500" />
           <span>{pkg.rating}</span>

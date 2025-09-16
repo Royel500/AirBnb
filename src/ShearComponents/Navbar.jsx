@@ -15,20 +15,55 @@ import {
 import { Link } from 'react-router'; 
 import { useLanguage } from '../hooks/useLanguage';
 import LanguageSelector from '../Components/Languange/LanguageSelector';
+import useAxiosecure from '../hooks/useAxiosecure';
 
 
 const AirbnbNav = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+const [searchTerm, setSearchTerm] = useState("");
+const [showSearch, setShowSearch] = useState(false);
+
+const [searchResults, setSearchResults] = useState([]);
+const [searchLoading, setSearchLoading] = useState(false);
+const [searchError, setSearchError] = useState('');
 
    const { t, language } = useLanguage();
-
+const axiosSecure = useAxiosecure();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+
+
+
+const handleSearch = async () => {
+  if (!searchTerm.trim()) return;
+
+  try {
+    setSearchLoading(true);
+    setSearchError('');
+    const res = await axiosSecure.get(`/packages?search=${encodeURIComponent(searchTerm)}`);
+    
+    if (res.data.success) {
+      console.log("Search results:", res.data.data);
+      setSearchResults(res.data.data); // store results in state
+    } else {
+      setSearchResults([]);
+      setSearchError(res.data.message || 'No results found');
+    }
+  } catch (err) {
+    setSearchResults([]);
+    setSearchError(err.response?.data?.message || 'Search failed. Please try again.');
+    console.error("Search failed:", err);
+  } finally {
+    setSearchLoading(false);
+  }
+};
+
 
   return (
     <>
@@ -61,12 +96,24 @@ const AirbnbNav = () => {
          <span className="h-4 bg-gray-300 w-px"></span> 
          <button className="text-[15px] font-medium px-4">Any Time</button>
          <span className="h-4 bg-gray-300 w-px"></span>
-         <button className="text-[15px] font-medium text-gray-500 px-4">
+         <button className="text-[15px] font-medium  px-4">
            Add guests
          </button>
-         <button className="bg-rose-500 rounded-full p-2"> 
-           <FaSearch className="text-white text-xs" />
-         </button>
+
+
+{/* -------search option----- */}
+
+
+    <button
+      onClick={() => setShowSearch(!showSearch)}
+      className="bg-rose-500 rounded-full p-2"
+    >
+      <FaSearch 
+      className="text-white " />
+    </button>
+
+
+
        </div>
      </div>
    </div>
@@ -241,9 +288,35 @@ const AirbnbNav = () => {
       Who <br /> <span className="font-normal text-gray-500 whitespace-nowrap">Add guests</span>
     </button>
 
-    <button className="bg-rose-500 rounded-full p-2">
+{/* -------search option----- */}
+<div className={`lg:flex justify-center  ${showSearch ? "block" : "hidden"}`}>
+  <div className="flex items-center border border-gray-300 
+  rounded-full px-4 shadow-lg py-2 space-x-2 w-[200px]">
+    <button
+      onClick={() => setShowSearch(!showSearch)}
+      className="bg-rose-500 rounded-full p-2"
+    >
       <FaSearch className="text-white text-xs" />
     </button>
+
+    <input
+      type="text"
+      placeholder="Search..."
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      className="flex-grow outline-none text-sm"
+    />
+    <button
+      onClick={handleSearch}
+      className="bg-gray-500 text-white px-3 -ml-13 py-1 rounded-md text-sm"
+    >
+      Go
+    </button>
+  </div>
+</div>
+
+
+
   </div>
 </div>
 

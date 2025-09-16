@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { FaCamera, FaUpload, FaSpinner } from 'react-icons/fa';
+import { FaCamera, FaUpload, FaSpinner, FaBackspace } from 'react-icons/fa';
 import axios from 'axios'; // ✅ For uploading to imgbb
 import useAxiosecure from '../../hooks/useAxiosecure';
+import { Link } from 'react-router';
 
 const AddPackageForm = () => {
   const axiosSecure = useAxiosecure();
@@ -127,6 +128,12 @@ const AddPackageForm = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="container mx-auto px-4 max-w-3xl">
+        <button className='btn'>
+          <span> <FaBackspace></FaBackspace> </span>
+          <Link to={'/'}>
+          Back to home
+          </Link>
+        </button>
         <h1 className="text-3xl font-bold text-center mb-2">Add New Package</h1>
         <p className="text-gray-600 text-center mb-8">
           Fill out the form below to create a new Airbnb-style listing
